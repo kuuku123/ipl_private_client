@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { json } from "stream/consumers";
 import { StringLiteralType } from "typescript";
 
-interface Match {
+export interface Match {
     id: number;
     city: string;
     date: Date;
@@ -40,15 +40,13 @@ const TeamPage = () => {
             console.log(data);
         };
         fetchMatches();
-    }, []);
+    },[]);
 
-    return !team ? null : (
+    return !team ? null: (
         <div className="TeamPage">
             <h1>{team!.teamName}</h1>
-            <MatchDetailCard />
-            <MatchSmallCard />
-            <MatchSmallCard />
-            <MatchSmallCard />
+            <MatchDetailCard match={team.league_matches[0]} />
+            {team.league_matches.slice(1).map(match => <MatchSmallCard match={match} key={match.id}/>)}
         </div>
     );
 };

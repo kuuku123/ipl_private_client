@@ -1,9 +1,12 @@
-import React from 'react'
+import {Match} from "../pages/TeamPage";
 
-const MatchSmallCard = () => {
+interface Prop{
+    match: Match
+}
+const MatchSmallCard = ({match} : Prop) => {
   return (
       <div className="MatchSmallCard">
-          <p>Match Small Card</p>
+          <p>{match.team1} vs {match.team2}</p>
       </div>
   )
 }
