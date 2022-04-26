@@ -3,6 +3,7 @@ import MatchSmallCard from "components/MatchSmallCard";
 import { useEffect, useState } from "react";
 import { json } from "stream/consumers";
 import { StringLiteralType } from "typescript";
+import { useParams } from "react-router-dom";
 
 export interface Match {
     id: number;
@@ -30,25 +31,37 @@ interface Team {
 
 const TeamPage = () => {
     const [team, setTeam] = useState<Team>();
+    const { teamName } = useParams();
     useEffect(() => {
         const fetchMatches = async () => {
             const response = await fetch(
-                "http://localhost:8080/team/Chennai Super Kings"
+                `http://localhost:8080/team/${teamName}`
             );
             const data = await response.json();
             setTeam(data);
-            console.log(data);
         };
         fetchMatches();
-    },[]);
+    }, [teamName]);
 
-    return !team ? null: (
-        <div className="TeamPage">
-            <h1>{team!.teamName}</h1>
-            <MatchDetailCard match={team.league_matches[0]} />
-            {team.league_matches.slice(1).map(match => <MatchSmallCard match={match} key={match.id}/>)}
-        </div>
-    );
+    if (team) {
+        console.log(team);
+        if (team!.teamName == "no such team" || !team) {
+            return <h1>Team not found</h1>;
+        }
+
+        return (
+            <div className="TeamPage">
+                <h1>{team!.teamName}</h1>
+                <MatchDetailCard match={team!.league_matches[0]} teamName={team.teamName} />
+                {team!.league_matches.slice(1).map((match) => (
+                    <MatchSmallCard key={match.id} match={match} teamName={team.teamName} />
+                ))}
+            </div>
+        );
+    } else {
+        console.log("what")
+        return null;
+    }
 };
 
 export default TeamPage;
