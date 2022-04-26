@@ -8,7 +8,7 @@ interface Prop {
 const MatchSmallCard = ({ match, teamName }: Prop) => {
     if (!match) return null;
     const otherTeam = match.team1 === teamName ? match.team2 : match.team1;
-    const otherTeamRoute = `/teams/${otherTeam}`
+    const otherTeamRoute = `/teams/${otherTeam}`;
     return (
         <div className="MatchSmallCard">
             <h3>
