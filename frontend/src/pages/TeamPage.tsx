@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 import "./scss/TeamPage.scss";
 import { PieChart } from "react-minimal-pie-chart";
-import { storiesOf } from '@storybook/react';
 
 export interface Match {
     id: number;
