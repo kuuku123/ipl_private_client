@@ -14,7 +14,13 @@ const MatchDetailCard = ({ match, teamName }: Props) => {
     const otherTeamRoute = `/teams/${otherTeam}`;
     const isMatchWon = teamName === match.matchWinner;
     return (
-        <div className={isMatchWon ? 'MatchDetailCard won-card' : 'MatchDetailCard lost-card'}>
+        <div
+            className={
+                isMatchWon
+                    ? "MatchDetailCard won-card"
+                    : "MatchDetailCard lost-card"
+            }
+        >
             <div>
                 <span className="vs">vs</span>
                 <h1>
