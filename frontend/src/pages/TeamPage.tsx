@@ -22,7 +22,7 @@ export interface Match {
     umpire1: string;
     umpire2: string;
 }
-interface Team {
+export interface Team {
     id: number;
     teamName: string;
     totalMatches: number;
@@ -72,8 +72,11 @@ const TeamPage = () => {
                         ]}
                     />
                 </div>
+                <h1>
+                    <Link to={`/`}>HOME</Link>
+                </h1>
                 <div className="match-detail-section">
-                    <h3>Latest Matches</h3>
+                    <h2>Latest Matches</h2>
                     <MatchDetailCard
                         match={team!.league_matches[0]}
                         teamName={team.teamName}

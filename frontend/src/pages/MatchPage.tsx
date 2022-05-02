@@ -1,6 +1,6 @@
 import MatchDetailCard from "components/MatchDetailCard";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { setTokenSourceMapRange } from "typescript";
 import TeamPage, { Match } from "./TeamPage";
 import "./scss/MatchPage.scss";
@@ -42,6 +42,9 @@ const MatchPage = () => {
                     <h1 className="no-match-year">No match in year {year}</h1>
                 )}
             </div>
+            <h1>
+                <Link to={`/`}>Home</Link>
+            </h1>
         </div>
     );
 };
